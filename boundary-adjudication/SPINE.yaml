@@ -1,0 +1,665 @@
+spine_version: "0.2"
+paper_key: "boundary-adjudication"
+title: "When a Boundary Claim Becomes Testable: A Criterion for Adjudicating Scale-Relative Claims, with One Coded Case"
+thesis: |
+  Claims that a self-maintaining or cognitive system extends to some scale are chronically
+  underdetermined, because in the cases usually discussed the investigator draws the boundary and can
+  redraw it around whatever is interesting. The live response is conceptual rather than empirical: it
+  concedes that boundary-drawing is an interpretation and answers that interpretation is ubiquitous in
+  science and so not disqualifying. That answer has a precondition it does not state, namely that the
+  interpreter is the theorist. This paper specifies the class of domains in which that precondition
+  fails — where a perimeter is fixed by a party whose reasons are indifferent to the hypothesis, is
+  observable to someone who did not draw it, and moves only by dated events with recorded outcomes —
+  and shows that within that class the measurable quantity is not whether a boundary is drawn
+  correctly but what a hypothesis-independent perimeter fails to contain. One acquisition, coded from
+  two disjoint document sets, is offered as an existence proof that the three conditions are jointly
+  satisfiable and the divergence observable.
+
+# ---------------------------------------------------------------------------
+# BOUNDARY CONDITIONS
+# ---------------------------------------------------------------------------
+boundary_conditions:
+  - id: C1
+    statement: "The perimeter is fixed by a party whose reasons are indifferent to the hypothesis under test, not indifferent simpliciter."
+    rationale: "No party is indifferent to everything. Exogeneity with respect to the hypothesis is what an instrument requires; exogeneity full stop is unavailable in any domain."
+  - id: C2
+    statement: "An audit or registry makes the perimeter inspectable by someone who did not draw it."
+  - id: C3
+    statement: "The perimeter moves only by discrete dated events whose outcomes are recorded."
+  - id: C4
+    statement: "The perimeter coded is the audited significant perimeter, not an exhaustive enumeration of legal entities."
+    rationale: "Item 601(b)(21) of Regulation S-K permits omitting subsidiaries that, in the aggregate as a single subsidiary, would not be a significant subsidiary under Rule 1-02(w) of Regulation S-X."
+
+# ---------------------------------------------------------------------------
+# ASSUMPTION ATOMS
+# ---------------------------------------------------------------------------
+assumption_atoms:
+  - id: AA1
+    statement: "A published subsidiary schedule is a faithful enough enumeration of a firm's audited significant legal perimeter to support comparison."
+    type: "data_source_trust"
+    relaxable: true
+    relaxation_consequence: "If the schedule under-reports materially, the coded perimeter is smaller than the real one. The direction is bounded: an omitted entity is still a legal entity, and cannot introduce an upstream project onto the list, so F3 is unreachable by this relaxation."
+    affects: [M1, F1, F3]
+    body_sections: ["Method — the legal coding"]
+  - id: AA2
+    statement: "A distribution's declared upstream URL identifies the project from which a component originates."
+    type: "data_source_trust"
+    relaxable: true
+    relaxation_consequence: "URLs are packager-authored and can be stale or wrong. Errors are bounded by RC1 and by excluding undeclared cases rather than pooling them."
+    affects: [M2, F2]
+    body_sections: ["Method — the persistence coding"]
+  - id: AA3
+    statement: "A public rebuild of a commercial distribution preserves its source composition apart from branding artefacts."
+    type: "instrument_equivalence"
+    relaxable: true
+    relaxation_consequence: "If the rebuild strips vendor-originated components, the measured outside-share is inflated. Checked directly rather than assumed: vendor-originated packages remain present in the rebuild."
+    affects: [M2, F2]
+    body_sections: ["Method — the persistence coding"]
+
+# ---------------------------------------------------------------------------
+# METHODS
+# ---------------------------------------------------------------------------
+methods:
+  - id: M1
+    statement: "Enumerate the audited legal perimeter and decompose the perimeter-event, from regulatory filings only."
+    type: "archival_search"
+    inputs: [O1, O2, O3]
+    outputs: [m1, m2]
+    reproducibility:
+      seed: "deterministic (no RNG)"
+      runtime_environment: "public filings retrieved by accession number"
+    body_sections: ["Method — the legal coding"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+      under_conditions: "Filings-only rule: no community document, repository or press account may be read on this side."
+
+  - id: M2
+    statement: "Classify each source component of the product by the provenance of its declared upstream, from distribution package metadata only, under a host list fixed before the data was read."
+    type: "qualitative_coding"
+    inputs: [O4]
+    outputs: [m3, m4]
+    code_anchor: "code/code_persistence_content.py"
+    reproducibility:
+      seed: "deterministic (no RNG)"
+      runtime_environment: "Python 3.12 + uv; offline, reads two archived metadata files"
+    body_sections: ["Method — the persistence coding"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+      under_conditions: "Protocol fixed before the data was fetched. Two constraints bind it: no document shared with M1, and no keying on valuation difficulty."
+
+# ---------------------------------------------------------------------------
+# OBSERVATIONS
+# ---------------------------------------------------------------------------
+observations:
+  - id: O1
+    statement: "A subsidiary schedule stating the registrant's subsidiaries as of the last audited fiscal year end before the perimeter-event."
+    raw_data_pointer: "data/redhat_ex21_1_fy2019.htm"
+    instrument: "public filing, retrieved by accession number"
+    timestamp: "2019-04-24"
+    conditions_at_capture: "Exhibit 21.1 to the annual report; list stated as of 2019-02-28"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+    body_sections: ["Method — the legal coding"]
+
+  - id: O2
+    statement: "The completion report for the acquisition, reporting the effective time, the consideration, the delisting notice, and the disposition of board, officers and constitutional documents."
+    raw_data_pointer: "public filing, current report dated 2019-07-09"
+    instrument: "public filing"
+    timestamp: "2019-07-09"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+    body_sections: ["Results — the perimeter-event"]
+
+  - id: O3
+    statement: "The merger proxy, disclosing retention arrangements and a separate restrictive-covenant agreement carrying non-competition, non-solicitation and perpetual confidentiality covenants."
+    raw_data_pointer: "public filing, definitive merger proxy dated 2018-12-12"
+    instrument: "public filing"
+    timestamp: "2018-12-12"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+    body_sections: ["Discussion — the acquirer's own admission"]
+
+  - id: O4
+    statement: "Source-repository package metadata for the product release falling inside the window between the audited perimeter date and the perimeter-event."
+    raw_data_pointer: "data/{baseos,appstream}-primary.xml.gz"
+    instrument: "distribution repository metadata, authored by packagers for package managers"
+    timestamp: "2019-05-07 (product release date)"
+    conditions_at_capture: "Public rebuild of the commercial distribution; source repositories only"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+    body_sections: ["Method — the persistence coding"]
+
+# ---------------------------------------------------------------------------
+# MEASUREMENTS
+# ---------------------------------------------------------------------------
+measurements:
+  - id: m1
+    statement: "The audited perimeter comprises 60 subsidiary legal entities across 39 jurisdictions."
+    source_observations: [O1]
+    generating_method: M1
+    value: "60 entities; 39 jurisdictions"
+    units: "counts"
+    uncertainty: "deterministic enumeration of a filed list; subject to C4"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: m2
+    statement: "The components of the perimeter moved on four distinct dates: control and charter and board at the effective time, officers retained, listing suspended the same day, registration terminated ten days later."
+    source_observations: [O2]
+    generating_method: M1
+    value: "4 distinct dates across perimeter components"
+    units: "categorical, dated"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: m3
+    statement: "Of 2,093 distinct source components, 33 declare no upstream; of the 2,060 codeable, 90 originate on a vendor-controlled or vendor-sponsored host and 1,970 do not."
+    source_observations: [O4]
+    generating_method: M2
+    value: "inside 90; outside 1970; undeclared 33"
+    units: "counts"
+    uncertainty: "deterministic given the fixed host list; misclassification direction stated in L2"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: m4
+    statement: "Under a sensitivity pass reclassifying every code-hosting-platform component as inside, 418 are inside and 1,642 outside."
+    source_observations: [O4]
+    generating_method: M2
+    value: "inside 418; outside 1642"
+    units: "counts"
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# FINDINGS
+# ---------------------------------------------------------------------------
+findings:
+  - id: F1
+    statement: "The audited legal perimeter of the acquired firm enumerated 60 entities in 39 jurisdictions, and contained no upstream project."
+    source_measurements: [m1]
+    generating_method: M1
+    conditions: "C2, C4"
+    antecedents: [O1, M1, AA1]
+    statistical_strength: "complete enumeration of one filed list; no inferential statistics"
+    falsifier: "An upstream project appearing as a subsidiary entity on the schedule."
+    evidence:
+      - type: archival_record
+        anchor: "Exhibit 21.1, annual report accession 0001087423-19-000012"
+    body_sections: ["Results — the legal perimeter"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: F2
+    statement: "Of the product's codeable source components, .956 originate outside vendor-controlled hosts; under a sensitivity pass rigged against the finding, .797 do."
+    source_measurements: [m3, m4]
+    generating_method: M2
+    conditions: "C1, C2"
+    antecedents: [O4, M2, AA2, AA3]
+    statistical_strength: "complete enumeration of one product release; pre-registered failure condition inside > .500 not met"
+    falsifier: "A product whose source composition originates predominantly inside the firm — the expected result for a vertically integrated proprietary vendor."
+    evidence:
+      - type: code_anchor
+        anchor: "code/code_persistence_content.py (deterministic, no seed required)"
+    body_sections: ["Results — the persistence coding"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: F3
+    statement: "The perimeter and the persistence content diverge, and the divergence is visible from two document sets that share no document and were authored for unrelated purposes."
+    source_measurements: [m1, m3]
+    generating_method: M1
+    conditions: "C1, C2, C4"
+    antecedents: [F1, F2]
+    statistical_strength: "one case; existence claim only"
+    falsifier: "A case meeting C1-C3 in which the audited perimeter contains the components the product cannot be built without."
+    body_sections: ["Results — the divergence"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: F4
+    statement: "The components of a perimeter-event move on different dates from one another, so the perimeter is not a single line even within one transaction."
+    source_measurements: [m2]
+    generating_method: M1
+    conditions: "C3"
+    antecedents: [O2, M1]
+    falsifier: "Perimeter components that always move simultaneously."
+    body_sections: ["Results — the perimeter-event"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# NEGATIVE FINDINGS
+# ---------------------------------------------------------------------------
+negative_findings:
+  - id: NF1
+    statement: "The realism-versus-instrumentalism dispute about system boundaries contains no proposed observation on which the two positions would predict different results; the live defence of realism secures it by weakening what realism demands rather than by empirical contest."
+    expected_observation: "A stated measurement whose outcome would favour one position over the other."
+    source_method: "Close reading of the dispute's principal exchange and its extended restatement."
+    affects_nodes: [P1, P2]
+    motivates: [P2]
+    body_sections: ["Introduction — the state of the dispute"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: NF2
+    statement: "The literature that codes legal against economic firm boundaries compares the legal perimeter only with ownership, control, tax residence or geography — constructs of the same legal and financial register. No prior study codes the perimeter against what the firm requires in order to keep producing."
+    expected_observation: "A study coding an entity schedule against a production-necessity criterion."
+    source_method: "Targeted search of the entity-list and control-rights coding literature, with every candidate resolved to a published record."
+    affects_nodes: [P4]
+    motivates: [P4]
+    body_sections: ["Related work — coding precedent"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# PROPOSITIONS
+# ---------------------------------------------------------------------------
+propositions:
+  - id: P1
+    statement: "The standing defence of realism about model-drawn system boundaries presupposes that the interpretative step is performed by the theorist."
+    type: ontological
+    conditions: ""
+    antecedents: []
+    assumptions: []
+    falsifier: "A statement of the defence that does not rely on the ubiquity of theorist-performed interpretation."
+    evidence:
+      - type: citation
+        anchor: "The defence states that the point about interpretation is fair, and that it is another thing entirely to infer that interpretation implies arbitrariness (p. 652)."
+        citation_keys: [kirchhoff-2025-literalist-fallacy-free-energy]
+        citation_role: motivating_problem
+    body_sections: ["Introduction — the state of the dispute"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: P1a
+    statement: "Realism about active inference models as representations of target systems is a distinct thesis from realism about the location of any particular system boundary. The defence in P1 argues for the first and relies on a claim about the second; only the second is at issue here."
+    type: ontological
+    conditions: ""
+    antecedents: [P1]
+    assumptions: []
+    falsifier: "A reading on which the defence's conclusion about models entails, rather than merely presupposes, a thesis about where particular systems end."
+    evidence:
+      - type: citation
+        anchor: "The published conclusion is scoped to active inference models under the free energy principle and is hedged as a version of realism, not as a claim about boundary location."
+        citation_keys: [kirchhoff-2025-literalist-fallacy-free-energy]
+        citation_role: motivating_problem
+      - type: citation
+        anchor: "The free energy principle is a model structure to which construals are added, so demanding a discriminating test of the formalism is a category error; boundary claims are construals and are not exempt."
+        citation_keys: [andrews-2021-math-not-territory]
+        citation_role: theoretical_predecessor
+    body_sections: ["Introduction — the state of the dispute", "Discussion — what the criterion does not do"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+      under_conditions: "FORK. Added after the first draft slid between the two theses without marking the difference."
+
+  - id: P2
+    statement: "Where a perimeter satisfies hypothesis-independence, observability and dated mobility, the defence in P1 is unavailable, and the dispute recovers empirical content."
+    type: ontological
+    conditions: "C1, C2, C3"
+    antecedents: [P1]
+    assumptions: []
+    ruled_out_rivals: [A1]
+    falsifier: "A domain meeting C1-C3 in which realist and instrumentalist readings still make identical predictions."
+    evidence:
+      - type: analytic
+        anchor: "P1's defence is a claim about who interprets. Where the boundary is drawn by a non-theorist for unrelated reasons, the premise does not obtain."
+    body_sections: ["The criterion"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: P3
+    statement: "Within a qualifying domain the measurable quantity is boundary failure rather than boundary correctness: what escapes a hypothesis-independent perimeter is evidence, whereas what escapes an investigator-drawn perimeter is an artefact of where it was drawn."
+    type: ontological
+    conditions: "C1, C2, C3"
+    antecedents: [P2]
+    ruled_out_rivals: [A2]
+    falsifier: "A hypothesis-independent perimeter whose residual varies with the investigator's choices."
+    evidence:
+      - type: empirical
+        anchor: "F3 — the divergence is observable from disjoint document sets."
+    body_sections: ["The inversion"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: P4
+    statement: "The criterion's principal yield is negative: it identifies most domains in which boundary disputes are conducted as domains where no observation could settle them, for the hypotheses relative to which the investigator is the perimeter-setter."
+    type: ontological
+    conditions: ""
+    antecedents: [P2]
+    falsifier: "A demonstration that the usual cases satisfy C1-C3 after all."
+    evidence:
+      - type: analytic
+        anchor: "Where the partition under dispute is drawn by the investigator, any observation about what falls outside it is an observation about that choice."
+    body_sections: ["The criterion — what it excludes"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: P4a
+    statement: "The exclusion is hypothesis-relative and divides into two classes. Partitions that exist only as modelling choices fail C1 outright. Physical or physiological interfaces that exist independently of any theorist fail C1 only relative to hypotheses about their status as the system boundary, and may satisfy it relative to others."
+    type: ontological
+    conditions: "C1"
+    antecedents: [P4]
+    falsifier: "A physical interface whose status as the system boundary is fixed by the investigator under every hypothesis, or a purely model-relative partition that some party fixes independently."
+    evidence:
+      - type: citation
+        anchor: "An evidentiary boundary derived from prediction-error minimisation, and the observation that which nested blanket is emphasised is fixed by explanatory interest, are class-A cases: the partition is the theorist's."
+        citation_keys: [hohwy-2016-self-evidencing-brain]
+        citation_role: supporting_evidence
+      - type: citation
+        anchor: "Immunological inclusion and exclusion operate independently of the boundary dispute, so a physiological perimeter is a class-B candidate rather than a settled exclusion."
+        citation_keys: [pradeu-2016-organisms-biological-individuals]
+        citation_role: rival_ruled_out
+      - type: citation
+        anchor: "Metabolic wholes that do not coincide with lineage-forming individuals show that biological individuation supplies more than one candidate perimeter, each independent of the hypothesis the others serve."
+        citation_keys: [dupre-2009-varieties-living-things]
+        citation_role: rival_ruled_out
+    body_sections: ["The criterion — what it excludes"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+      under_conditions: "FORK. The first draft excluded biological domains as a single class, which is false as written."
+
+  - id: P5
+    statement: "A firm is an existence proof that the three conditions are jointly satisfiable; it is an instrument for the boundary question and not a subject of it."
+    type: ontological
+    conditions: "C1, C2, C3, C4"
+    antecedents: [P2, P3]
+    assumptions: [AA1]
+    ruled_out_rivals: [A3]
+    falsifier: "Any showing that firms fail one of C1-C3, or that the paper's inferences require attributing cognition to firms."
+    evidence:
+      - type: empirical
+        anchor: "F1, F2, F3, F4"
+      - type: analytic
+        anchor: "Only legal persons may own property, and capital-structure attributes are firm-wide, so the perimeter cannot be redrawn finely or quietly."
+    body_sections: ["The firm as existence proof"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# DERIVATIONS
+# ---------------------------------------------------------------------------
+derivations:
+  - id: D1
+    statement: "P2 follows from P1 by denying the antecedent condition rather than the conclusion: the defence is not refuted, its scope is bounded."
+    from: [P1]
+    to: P2
+    reasoning_type: "deductive"
+    body_sections: ["The criterion"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: D2
+    statement: "P5 follows from P2 and P3 together with F1-F4 as an existence claim; it does not generalise beyond the demonstration that the conditions are jointly satisfiable."
+    from: [P2, P3]
+    to: P5
+    reasoning_type: "inductive"
+    body_sections: ["The firm as existence proof"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# ALTERNATIVE EXPLANATIONS
+# ---------------------------------------------------------------------------
+alternative_explanations:
+  - id: A1
+    statement: "This is the familiar fact that legal entity is not economic organization; measuring it adjudicates nothing that the existing literatures cannot already say."
+    rules_out_required: [F3, NF2]
+    ruled_out_by: [NF2]
+    rules_out_status: "partially_ruled_out"
+    reasoning: "The familiar fact is that legal and economic perimeters diverge, and prior coding demonstrates it. What is not available in that literature is a comparison whose second term is production necessity rather than another legal or financial construct, so the inference in P3 is not one it already licenses. This is the predicted lead objection and must be answered in the paper's own voice."
+    body_sections: ["Discussion — the lead objection"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: A2
+    statement: "The divergence is an artefact of the perimeter being drawn for capital-structure reasons that correlate with the opacity of the assets, so what escapes is selected by the same variable that placed the perimeter."
+    rules_out_required: [F2]
+    ruled_out_by: [F2]
+    rules_out_status: "rejected"
+    reasoning: "The case was chosen so that the escaping content is maximally transparent — public repositories and public governance — rather than opaque. Opacity cannot explain a partition whose residual is fully observable."
+    evidence:
+      - type: citation
+        anchor: "Legal partitioning is chosen jointly with economic integration, and capital-structure demands are asset-contingent, including on how difficult assets are to value and monitor."
+        citation_keys: [iacobucci-2007-economic-legal-boundaries]
+        citation_role: rival_ruled_out
+    body_sections: ["Method — case selection", "Discussion — identification"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: A3
+    statement: "The argument covertly treats the firm as a cognitive system, so it reduces to existing accounts of group agency and distributed cognition."
+    rules_out_required: [P5]
+    ruled_out_by: [P5]
+    rules_out_status: "rejected"
+    reasoning: "No premise attributes cognition, agency or mind to the firm. The firm supplies a perimeter with three properties; nothing in the inference requires it to be a subject."
+    body_sections: ["Scope — what is not claimed"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# ROBUSTNESS CHECKS
+# ---------------------------------------------------------------------------
+robustness_checks:
+  - id: RC1
+    statement: "Reclassify every code-hosting-platform component as inside the perimeter, an indefensibly generous coding, to establish a floor for the outside share."
+    varied_parameter: "provenance host classification"
+    range_explored: "all 328 code-hosting-platform components moved to inside"
+    result_stability: "confirmed"
+    affects_nodes: [F2, F3]
+    source_method: M2
+    body_sections: ["Results — sensitivity"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: RC2
+    statement: "Check that the public rebuild has not stripped vendor-originated components, which would inflate the outside share."
+    varied_parameter: "instrument equivalence (rebuild versus commercial release)"
+    range_explored: "named vendor-originated packages sought directly in the rebuild"
+    result_stability: "confirmed"
+    affects_nodes: [F2, AA3]
+    source_method: M2
+    body_sections: ["Results — sensitivity"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: RC3
+    statement: "Replicate on a second acquisition whose escaping content is of a different kind — dependence on externally maintained standards and terminologies rather than on unowned upstream code."
+    varied_parameter: "escape type"
+    range_explored: "one further perimeter-event, verified against the same four criteria; deliberately not coded"
+    result_stability: "planned"
+    note: "Deferred rather than pending. The paper makes an existence claim, which one instance discharges; a second case would answer a question the paper does not ask. Held as the response if generality is demanded."
+    affects_nodes: [F3, P5]
+    source_method: M1
+    body_sections: ["Discussion — replication"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+      under_conditions: "Candidate revised: a demand-side case was dropped because its escaping content is opaque and has no enumerable artefact, which would reintroduce the confound the first case designs out."
+
+# ---------------------------------------------------------------------------
+# LIMITATIONS
+# ---------------------------------------------------------------------------
+limitations:
+  - id: L1
+    statement: "Origin is not necessity. The measured share describes where the source composition comes from, not what proportion of it is counterfactually required."
+    affects: [F2, F3, P3]
+    severity: "high"
+    mitigation: "The necessity claim is carried by named components, each individually sufficient, and never by the aggregate. The aggregate is reported only as evidence about the shape of the composition."
+    body_sections: ["Results — what is measured", "Limitations"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: L2
+    statement: "The provenance proxy misclassifies vendor-led projects hosted on neutral infrastructure, and the error runs toward the outside category."
+    affects: [F2]
+    severity: "medium"
+    mitigation: "RC1 bounds the code-hosting-platform portion. Named misclassified cases are disclosed. The pre-registered host list was deliberately not widened after inspecting the output."
+    body_sections: ["Limitations"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: L3
+    statement: "The persistence coding is mechanical, not blind. It was executed by a fixed pre-registered procedure over independent sources, but not by a coder ignorant of the hypothesis."
+    affects: [F2, F3]
+    severity: "medium"
+    mitigation: "Pre-registration of the procedure controls outcome-driven selection but not hypothesis-driven design of the procedure. Only the weaker claim may be made."
+    body_sections: ["Method — the persistence coding", "Limitations"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: L4
+    statement: "One case establishes satisfiability, not generality. A domain can also satisfy all three conditions while the coding instrument still cannot reach its escaping content, which is a limit on the method rather than on the criterion."
+    affects: [F3, P5]
+    severity: "medium"
+    mitigation: "RC3 identifies a replication case of a different escape type."
+    body_sections: ["Limitations"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: L5
+    statement: "The criterion narrows C1 from indifference to indifference with respect to the hypothesis. This is a genuine weakening and is stated as one."
+    affects: [P2, P5]
+    severity: "medium"
+    mitigation: "Stated in the criterion's own statement rather than in a footnote; the scope table names the case where even the narrowed condition fails."
+    body_sections: ["The criterion", "Scope"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+  - id: L6
+    statement: "The paper does not show that realism about active inference models is false. It shows that one defence of realism about system boundaries is unavailable where the three conditions hold, and empirically idle where they do not."
+    affects: [P1, P1a, P2]
+    severity: "medium"
+    mitigation: "Stated in the introduction as well as here, because the misreading it guards against is the one a specialist referee reaches for first."
+    body_sections: ["Discussion — what the criterion does not do", "Limitations"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# STYLIZED FACTS
+# ---------------------------------------------------------------------------
+stylized_facts:
+  - id: SF1
+    statement: "A perimeter can be complete, audited and correct on its own terms while failing to contain what the system it encloses requires in order to persist."
+    aggregates_findings: [F1, F2, F3]
+    aggregation_logic: "F1 establishes the perimeter's contents, F2 the substrate's provenance, F3 that the two are visible from disjoint sources."
+    uniquely_explained_by: "P3 — boundary failure as the measurable quantity."
+    body_sections: ["Results — the divergence"]
+    provenance:
+      created_by: "author"
+      created_at: "2026-08-28"
+
+# ---------------------------------------------------------------------------
+# EXTERNAL ANCHORS
+# ---------------------------------------------------------------------------
+external_anchors:
+  - claim: "The standing critique that the boundary formalism equivocates between a formal property of a model and a metaphysically loaded boundary of a system."
+    citation_keys: [bruineberg-2022-emperors-new-markov]
+    citation_role: motivating_problem
+    note: "The problem statement of the paper, not a threat to it."
+
+  - claim: "The live defence of realism about model-drawn boundaries, which concedes that the interpretative step is performed by a theorist and denies only that interpretation implies arbitrariness."
+    citation_keys: [kirchhoff-2025-literalist-fallacy-free-energy]
+    citation_role: motivating_problem
+    note: "Version of record held; the concession is at p. 652 and is explicit. Describe the position in its published scope -- realism about active inference models, not about the free energy principle."
+
+  - claim: "Four conceptions of organizational boundaries, with an explicit call for research on the relationships among them rather than competition between them."
+    citation_keys: [santos-2005-organizational-boundaries-theories]
+    citation_role: theoretical_predecessor
+    note: "The legal-ownership view is listed among the efficiency conception's contributions. The paper answers a call rather than defending a dismissed conception."
+
+  - claim: "Legal partitioning and economic integration are jointly chosen, and the legal perimeter's stickiness follows from property and capital-structure law rather than from practice."
+    citation_keys: [iacobucci-2007-economic-legal-boundaries]
+    citation_role: rival_ruled_out
+    note: "The identification-threat source, and the mechanism behind C3. It costs the criterion the word indifferent and pays for the stickiness argument outright."
+
+  - claim: "A published subsidiary schedule is a reasonable proxy for a firm's significant subsidiaries, benchmarked against what firms report privately to the revenue authority."
+    citation_keys: [dyreng-2020-strategic-subsidiary-disclosure]
+    citation_role: methodological_source
+    note: "Instrument validation for M1, and the source of C4. Cite as validation, not decoration: the claim that an audit makes the perimeter observable has been measured against a private benchmark rather than asserted. Its two stated limits are that the proxy is good for locations of SIGNIFICANT subsidiaries, and that nondisclosure concentrates in tax havens."
+
+  - claim: "Established precedent for coding legal against economic firm boundaries from entity schedules and from control rights."
+    citation_keys: [laporta-1999-corporate-ownership-around, claessens-2000-separation-ownership-control, almeida-2006-theory-pyramidal-ownership, altomonte-2026-business-groups-knowledge]
+    citation_role: methodological_source
+    note: "Concedes the coding technique outright. Each of the four codes the legal perimeter against another legal or financial construct -- ownership chains, the cash-flow-versus-control wedge, pyramidal structure, ultimate-owner group identification -- so both sides of every existing comparison come from the same register. That is what leaves the second term of this paper's comparison unoccupied, and it is why the concession is safe to make."
+
+  - claim: "Asset partitioning is the function organizational law performs that contract alone cannot, which is why a legal perimeter is a thing a party outside the firm can inspect."
+    citation_keys: [hansmann-2000-essential-role-organizational]
+    citation_role: theoretical_predecessor
+    note: "The conceptual basis the identification-threat source builds on, and the reason C2 is a claim about law rather than about disclosure practice."
+
+  - claim: "The free energy principle is a model structure to which construals are added, so a demand for a discriminating test of the formalism is a category error; particular boundary claims are construals and are not covered by that defence."
+    citation_keys: [andrews-2021-math-not-territory]
+    citation_role: theoretical_predecessor
+    note: "Grants the category-error point and narrows this paper's target to construals, which is what keeps P1a honest."
+
+  - claim: "The instrumentalist reading of models under the free energy principle, stated in its own voice rather than through its critics."
+    citation_keys: [vanes-2021-living-models-life]
+    citation_role: motivating_problem
+    note: "Cited so the realism-versus-instrumentalism setup is not built only from one side's reply."
+
+  - claim: "The positive Markov blanket proposal for locating the boundaries of the mind, which is the construal the critique attacks and the criterion is designed to outflank."
+    citation_keys: [kirchhoff-2021-determine-boundaries-mind]
+    citation_role: motivating_problem
+    note: "Distinct from the 2025 defence and by two of its three authors."
+
+  - claim: "An evidentiary boundary derived from prediction-error minimisation, and the emblematic notebook case of a claim that a cognitive system extends beyond the organism."
+    citation_keys: [hohwy-2016-self-evidencing-brain, clark-1998-extended-mind]
+    citation_role: supporting_evidence
+    note: "Class-A cases in P4a: the partition is the theorist's, and both are named in the opening rather than alluded to."
+
+  - claim: "Physiological and metabolic individuation supply candidate perimeters fixed independently of the boundary dispute, so biological domains are not excluded as a single class."
+    citation_keys: [pradeu-2016-organisms-biological-individuals, dupre-2009-varieties-living-things]
+    citation_role: rival_ruled_out
+    note: "The sources that make P4a's class B open rather than excluded. Without them the negative yield is stated too strongly to be true."
+
+  - claim: "Measurement is model-based and depends on standards that are not themselves under test in the measurement they support."
+    citation_keys: [tal-2013-old-new-problems]
+    citation_role: theoretical_predecessor
+    note: "Locates the inversion as a point about independent measurement standards rather than as a coined phrase."
+
+# ---------------------------------------------------------------------------
+# CORPUS PRECEDENTS
+# ---------------------------------------------------------------------------
+corpus_precedents: []
+
+# ---------------------------------------------------------------------------
+# OPEN
+# ---------------------------------------------------------------------------
+

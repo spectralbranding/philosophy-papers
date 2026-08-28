@@ -1,0 +1,84 @@
+# ONTOLOGY.yaml module - boundary-adjudication
+#
+# Per-paper ontology module per SPINE_FIRST_DRAFTING_PROTOCOL.md
+# §"ONTOLOGY.yaml schema (v0.1)". owns = terms THIS paper introduces (unique
+# authority); imports = terms owned by other modules it uses (reference only).
+# Linked into the substrate `terms` graph by build_ontology.py; rendered per-paper
+# by render_paper_glossary.py.
+#
+# Created 2026-08-28 alongside SPINE.yaml. Definitions here are the paper's own and
+# are authored rather than extracted. imports is empty by design: this paper takes no term from another module in the
+# corpus. It is a philosophy-of-science methods paper and shares no vocabulary with
+# the brand-theory line beyond ordinary English.
+
+paper_key: boundary-adjudication
+schema_version: 0.1
+
+owns:
+  - term_key: hypothesis-independent-perimeter
+    label: "hypothesis-independent perimeter"
+    canonical_form: "hypothesis-independent perimeter"
+    definition: >-
+      A boundary around a system that is fixed by a party whose reasons are
+      indifferent to the hypothesis under test. The condition is exogeneity with
+      respect to the hypothesis, not indifference to everything: no party is
+      indifferent to everything, and a perimeter-setter with commercial, legal or
+      fiscal reasons still qualifies so long as none of those reasons is the claim
+      being tested.
+    replaces: ["externally fixed perimeter", "indifferent-party perimeter"]
+    first_section: "§2"
+
+  - term_key: boundary-failure
+    label: "boundary failure"
+    canonical_form: "boundary failure"
+    definition: >-
+      The content a system requires in order to persist that its perimeter does
+      not contain. Where the perimeter is hypothesis-independent, observable and
+      moved only by dated events, boundary failure is a measurable quantity and
+      what escapes is evidence; where the perimeter is drawn by the investigator,
+      what escapes is an artefact of where it was drawn.
+    replaces: ["boundary leakage", "perimeter escape"]
+    first_section: "§3"
+
+  - term_key: perimeter-event
+    label: "perimeter-event"
+    canonical_form: "perimeter-event"
+    definition: >-
+      A dated, recorded occasion on which a perimeter moves. It is the paper's
+      unit of analysis. A perimeter-event is not a single act: its components —
+      control, constitutional instrument, governing body, officers, listing,
+      registration — may move on different dates within one transaction, which is
+      why the unit is the dated event rather than the entity or the period.
+    replaces: ["boundary change", "boundary move"]
+    first_section: "§4"
+
+  - term_key: adjudicability-criterion
+    label: "adjudicability criterion"
+    canonical_form: "adjudicability criterion"
+    definition: >-
+      The conjunction of three conditions a domain must supply for scale-relative
+      boundary claims about it to be empirically testable: a
+      hypothesis-independent perimeter, observability of that perimeter to a party
+      who did not draw it, and mobility only by discrete dated events with
+      recorded outcomes. Its principal yield is negative — it classifies most
+      domains in which such disputes are conducted as domains in which no
+      observation could settle them.
+    replaces: ["externally-fixed-perimeter criterion", "three-condition criterion"]
+    first_section: "§2"
+
+  - term_key: persistence-content
+    label: "persistence content"
+    canonical_form: "persistence content"
+    definition: >-
+      What a system requires in order to keep producing what it produces, assessed
+      by counterfactual necessity rather than by value. The criterion is
+      deliberately not economic: coding persistence content by how hard something
+      is to value would key on the same variable that places legal perimeters, and
+      would assume the conclusion.
+    replaces: ["what makes the firm persist", "productive substrate"]
+    first_section: "§4"
+
+imports: []
+
+refines: []
+

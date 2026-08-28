@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "philosophy-papers: philosophy-of-science research by Dmitry Zharnikov"
+version: "1.0.0"
+authors:
+  - family-names: "Zharnikov"
+    given-names: "Dmitry"
+    orcid: "0009-0000-6893-9231"
+date-released: "2026-08-28"
+license: "MIT"
+license-url: "https://opensource.org/licenses/MIT"
+repository-code: "https://github.com/spectralbranding/philosophy-papers"
+url: "https://github.com/spectralbranding/philosophy-papers"
+abstract: >
+  Public mirror for a line of philosophy-of-science work asking when a claim about
+  where a system ends has empirical content, and what a domain must supply for such
+  a claim to be testable at all. Each paper directory carries the paper, its
+  proposition and dependency graph, its ontology module, its analysis code, and a
+  manifest naming the canonical home of every data artifact it depends on. Cite the
+  individual paper rather than this repository; per-paper CITATION.cff files and
+  concept DOIs are in each directory.
+keywords:
+  - "philosophy of science"
+  - "system boundaries"
+  - "scientific realism"
+  - "underdetermination"
+  - "philosophy of measurement"
+  - "individuation"

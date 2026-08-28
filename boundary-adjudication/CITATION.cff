@@ -1,0 +1,38 @@
+cff-version: 1.2.0
+message: "If you use this paper, please cite it as below."
+authors:
+  - family-names: Zharnikov
+    given-names: Dmitry
+    affiliation: "Independent Researcher"
+    orcid: "https://orcid.org/0009-0000-6893-9231"
+title: "When a Boundary Claim Becomes Testable: A Criterion for Adjudicating Scale-Relative Claims, with One Coded Case"
+version: 1.0.0
+date-released: 2026-06-14
+url: "https://doi.org/10.5281/zenodo.22148374"
+repository-code: "https://github.com/spectralbranding/philosophy-papers"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22148374"
+    description: "Zenodo concept DOI (all versions)"
+keywords:
+  - system boundaries
+  - Markov blankets
+  - scientific realism
+  - underdetermination
+  - models
+  - measurement
+  - individuation
+  - free energy principle.
+license:
+  - CC-BY-4.0
+  - MIT
+type: article
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Zharnikov
+      given-names: Dmitry
+  title: "When a Boundary Claim Becomes Testable: A Criterion for Adjudicating Scale-Relative Claims, with One Coded Case"
+  year: 2026
+  doi: "10.5281/zenodo.22148374"
+  url: "https://doi.org/10.5281/zenodo.22148374"

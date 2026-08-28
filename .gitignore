@@ -1,0 +1,58 @@
+# Secrets + environment
+.env
+.env.*
+*.env
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# R
+.RData
+.Rhistory
+.Rapp.history
+.RDataTmp
+*.Rproj.user/
+
+# Stata
+*.log
+*.smcl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Node (for any web-build artifacts)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Build outputs that should NOT be committed
+# (figures/tables/logs ARE committed; build artifacts are not)
+*.aux
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Data exclusions (uncomment per-repo as needed)
+# data/raw/large_proprietary_dataset.csv
+# data/sensitive/*.csv
