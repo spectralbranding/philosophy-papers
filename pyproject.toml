@@ -1,25 +1,24 @@
 [project]
-name = "<repo-slug>"
+name = "philosophy-papers"
 version = "1.0.0"
-description = "<one-line description>"
+description = "Philosophy-of-science research: when a claim about where a system ends has empirical content"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Dmitry Zharnikov", email = "fermeradar@gmail.com" },
+    { name = "Dmitry Zharnikov", email = "dmitry@spectralbranding.com" },
 ]
-keywords = ["spectral brand theory", "organizational schema theory"]
+keywords = ["philosophy of science", "system boundaries", "scientific realism", "philosophy of measurement"]
+# The coding script is stdlib-only by design, so it can be audited as offline and
+# deterministic. huggingface_hub is needed only by reproduce.sh, to fetch the data
+# of record before the script runs.
 dependencies = [
-    "numpy>=2.0",
-    "pandas>=2.2",
-    "matplotlib>=3.9",
-    "scipy>=1.13",
-    "pyyaml>=6.0",
+    "huggingface-hub>=0.34",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/spectralbranding/<repo-slug>"
-"Zenodo" = "https://doi.org/10.5281/zenodo.<concept-doi>"
+"Homepage" = "https://github.com/spectralbranding/philosophy-papers"
+"Zenodo" = "https://doi.org/10.5281/zenodo.22148374"
 
 [tool.uv]
 # A reproduction bundle is a collection of scripts, not an installable library:
