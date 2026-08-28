@@ -30,9 +30,9 @@ Two features of that exchange motivate this paper. The first is that nothing in 
 
 The second feature is the one this paper turns on. The defence concedes the investigator-drawn-boundary point outright, and the concession has a precondition that goes unstated. The passage is at p. 652:
 
-> Bruineberg et al. ([2022]) make a good deal out of the fact that the shift from Pearl blankets to Friston blankets requires an interpretative step. It requires interpreting Markov blanket states in terms of sensory and active states. However, any kind of interpretation is done by a theorist, rendering the identification of Markov blanket states arbitrary. The point about interpretation is fair. It is another thing entirely to infer that interpretation implies arbitrariness. Nevertheless, science is unlikely to progress in the absence of interpretation.
+> Bruineberg et al. [-@bruineberg-2022-emperors-new-markov] make a good deal out of the fact that the shift from Pearl blankets to Friston blankets requires an interpretative step. It requires interpreting Markov blanket states in terms of sensory and active states. However, any kind of interpretation is done by a theorist, rendering the identification of Markov blanket states arbitrary. The point about interpretation is fair. It is another thing entirely to infer that interpretation implies arbitrariness. Nevertheless, science is unlikely to progress in the absence of interpretation.
 
-The published text separates two things carefully. It concedes *that a theorist interprets*, and denies only that interpretation *implies arbitrariness*, on the ground that interpretation is what theorists always do and science does not proceed without it. That is a good answer, and it is available exactly as long as its subject holds: the interpreter is the theorist. Where a boundary is not drawn by a theorist at all — where it is drawn by counsel, registrars and auditors, for their own reasons, before any theorist arrives, and moved only by dated events they file — the premise does not obtain, and the answer is unavailable.
+The wording is verbatim; only the embedded citation has been rendered in this paper's style rather than the original's, so that it resolves in the reference list below. The published text separates two things carefully. It concedes *that a theorist interprets*, and denies only that interpretation *implies arbitrariness*, on the ground that interpretation is what theorists always do and science does not proceed without it. That is a good answer, and it is available exactly as long as its subject holds: the interpreter is the theorist. Where a boundary is not drawn by a theorist at all — where it is drawn by counsel, registrars and auditors, for their own reasons, before any theorist arrives, and moved only by dated events they file — the premise does not obtain, and the answer is unavailable.
 
 This paper takes that observation and asks what a domain must supply for the resulting space to be occupied. The answer is a criterion of three conditions, and the criterion is the contribution. Its principal yield is negative: it identifies most of the domains in which the boundary dispute is currently conducted as domains in which no observation could settle it, which is a stronger and more useful statement than the observation that none has. Where the conditions do hold, the measurable quantity inverts. It is not whether the boundary is drawn correctly but what a hypothesis-independent perimeter fails to contain, because content escaping such a perimeter is evidence, whereas content escaping an investigator-drawn one is an artefact of where it was drawn.
 
@@ -251,11 +251,11 @@ The stylised fact this supports is general in form and modest in scope: **a peri
 
 ## Scope
 
-### *Where the application fails, degrades, or returns a null.*
+### *Where the criterion applies, and where the firm application does.*
 
-The criterion is only as useful as its limits are explicit. Read against C1, C2 and C3, the firm application fails outright in some domains, degrades in others, and in one is expected to return no divergence at all.
+The criterion is only as useful as its limits are explicit, and there are two separate questions. Table 3 reads the criterion against the domains in which the boundary dispute is actually conducted; Table 4 reads the firm application against the domains in which a legal perimeter might be used as the instrument. Both are read against C1, C2 and C3.
 
-**Table 3: Where the criterion applies, fails, degrades, or returns a null.**
+**Table 3: Where the criterion applies to the domains the dispute is usually conducted in.**
 
 | Domain | At risk | Verdict | Why |
 |---|---|---|---|
@@ -263,6 +263,13 @@ The criterion is only as useful as its limits are explicit. Read against C1, C2 
 | Person-plus-notebook | C1, C3 | Fails | Class A. Whether to count the notebook in is the analyst's decision, and no party outside the dispute records when it enters or leaves |
 | Immunological individuation | C1 | Open | Class B. The interface exists independently and includes and excludes without reference to the boundary dispute. It fails C1 only relative to hypotheses about which interface *is* the system boundary, and may satisfy it relative to others |
 | Symbiotic and metabolic wholes | C1, C2 | Open | Class B. Lineage and metabolism supply more than one candidate perimeter, each independent of the hypothesis the others serve; whether either is observable at the needed grain is unsettled |
+
+*Notes*: C1 hypothesis-independence, C2 observability, C3 dated mobility. Fails means the criterion does not apply; Open means the question is unsettled and is not closed here. Rows 1-2 are class A and rows 3-4 class B in the sense of the preceding section.
+
+**Table 4: Where the firm application fails, degrades, or returns a null.**
+
+| Domain | At risk | Verdict | Why |
+|---|---|---|---|
 | Perimeters drawn with the persistence content in view — acqui-hires, intellectual-property holding companies, knowledge carve-outs | C1 | Fails | The perimeter is drawn *around* the content the hypothesis is about, so the perimeter-setter is no longer indifferent to the hypothesis and the escape is definitional again |
 | Private firms | C2, C3 | Fails | No subsidiary schedule, no periodic report, no delisting or deregistration record. The perimeter is real and nothing makes it observable to a party who did not draw it |
 | Special-purpose and variable-interest entities | C1, C2 | Fails | The entity exists precisely to ring-fence a defined asset pool, so C1 fails as in the first row; and consolidation turns on control, a judgement, so the reporting perimeter is an opinion rather than a registry fact |
@@ -273,7 +280,7 @@ The criterion is only as useful as its limits are explicit. Read against C1, C2 
 | State-owned enterprises, mutuals and cooperatives | C3 | Degrades | The perimeter moves by political or administrative act. The events are dated, but outcomes are recorded thinly and on no fixed schedule |
 | Vertically integrated proprietary vendors | — | Null | All three conditions hold, and the perimeter is expected to *contain* the persistence content, so the measurement should return little or no divergence |
 
-*Notes*: C1 hypothesis-independence, C2 observability, C3 dated mobility. Fails means the criterion does not apply; Open means the question is unsettled and is not closed here; Degrades means the criterion applies with a loss that must be stated; Null means it applies and is expected to find no divergence, which is a result rather than a failure. Rows 1-2 are class A and rows 3-4 class B in the sense of the preceding section; rows 5-13 are the firm application. The tax-motivated row rests on the disclosure benchmark of Dyreng and colleagues cited above.
+*Notes*: C1 hypothesis-independence, C2 observability, C3 dated mobility. Fails means the criterion does not apply; Degrades means it applies with a loss that must be stated; Null means it applies and is expected to find no divergence, which is a result rather than a failure. The tax-motivated row rests on the disclosure benchmark of Dyreng and colleagues cited above.
 
 ### *Two rows that carry the weight, and one verdict the table cannot express.*
 
