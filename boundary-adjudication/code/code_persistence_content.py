@@ -216,7 +216,7 @@ def main() -> None:
         "NAMED CHECK -- components on which the product is uncontroversially dependent"
     )
     print("=" * 74)
-    for n in (
+    for name in (
         "kernel",
         "glibc",
         "gcc",
@@ -226,10 +226,10 @@ def main() -> None:
         "bash",
         "coreutils",
     ):
-        r = by_name.get(n)
+        r = by_name.get(name)
         if r:
             where = "INSIDE" if is_redhat_host(r["host"]) else "OUTSIDE"
-            print(f"  {n:<12} {where:<8} {r['host'] or '(no url)'}")
+            print(f"  {name:<12} {where:<8} {r['host'] or '(no url)'}")
 
     out = DATA / "persistence_coding_rows.tsv"
     with out.open("w") as fh:
