@@ -56,3 +56,14 @@ node_modules/
 # Data exclusions (uncomment per-repo as needed)
 # data/raw/large_proprietary_dataset.csv
 # data/sensitive/*.csv
+
+# Fleet internal (public repo — nothing tracked)
+.claude/
+.claude-decisions/
+skills/
+.clinerules
+.cursorrules
+.cursorignore
+.rooignore
+.mcp.json
+.flake8
