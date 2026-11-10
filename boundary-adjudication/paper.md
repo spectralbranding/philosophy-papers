@@ -6,7 +6,7 @@ ORCID: 0009-0000-6893-9231
 
 DOI: [10.5281/zenodo.22148374](https://doi.org/10.5281/zenodo.22148374)
 
-Working Paper v1.0.0 – August 2026
+Working Paper v1.0.1 – August 2026 (revised November 2026)
 
 ---
 
@@ -118,7 +118,7 @@ C3 holds by the mechanism given above. The perimeter moves by incorporation, dis
 
 The firm is an instrument for the boundary question, not a subject of it. No premise here attributes cognition, agency, mind or interest to a firm. The firm supplies a perimeter with three properties, and nothing in the inference requires it to be the kind of thing that has a perspective.
 
-The disclaimer is load-bearing rather than decorative, because the nearest misreading is fatal. An argument that treated the firm as a cognitive system whose boundary is being located would reduce to existing accounts of group agency and distributed cognition, and would lose to them, since those accounts are more developed and were built for the purpose. The argument here is orthogonal: it uses a legally constituted perimeter as a fixed reference against which a substrate can be compared, in the way an externally calibrated ruler is used without claiming that the ruler measures itself.
+The disclaimer is essential rather than decorative, because the nearest misreading is fatal. An argument that treated the firm as a cognitive system whose boundary is being located would reduce to existing accounts of group agency and distributed cognition, and would lose to them, since those accounts are more developed and were built for the purpose. The argument here is orthogonal: it uses a legally constituted perimeter as a fixed reference against which a substrate can be compared, in the way an externally calibrated ruler is used without claiming that the ruler measures itself.
 
 ## Related work
 
@@ -292,7 +292,7 @@ The criterion is only as useful as its limits are explicit, and there are two se
 
 **A fourth verdict belongs in the limitations rather than the table.** A domain can satisfy C1, C2 and C3 in full and still defeat the *coding instrument*, because its escaping content has no enumerable artefact. Demand-side escapes are the clear case: where what a firm depends on is the continued participation of parties outside it, there is nothing to enumerate and nothing to compare the perimeter against. That is a limit on the method, not on the criterion, and conflating the two would let a reader mistake an instrument limit for a scope limit.
 
-Platforms are deliberately absent from the table, and their absence is a correction rather than an oversight. A platform owner's legal perimeter is well defined and audited while the economically load-bearing complementor ecosystem sits almost entirely outside it. That is the criterion working, not breaking. Platforms threaten a thesis on which firms are where boundaries are drawn *correctly*; they do not threaten the inversion, under which a large well-observed residual is the finding rather than the problem.
+Platforms are deliberately absent from the table, and their absence is a correction rather than an oversight. A platform owner's legal perimeter is well defined and audited while the economically central complementor ecosystem sits almost entirely outside it. That is the criterion working, not breaking. Platforms threaten a thesis on which firms are where boundaries are drawn *correctly*; they do not threaten the inversion, under which a large well-observed residual is the finding rather than the problem.
 
 ## Discussion
 
@@ -408,7 +408,7 @@ cd philosophy-papers/boundary-adjudication
 
 ### *The record.*
 
-The concept DOI for this record is [10.5281/zenodo.22148374](https://doi.org/10.5281/zenodo.22148374), which always resolves to the most recent version; this version, v1.0.0, is [10.5281/zenodo.22148375](https://doi.org/10.5281/zenodo.22148375). Cite the concept DOI unless a specific version is meant.
+The concept DOI for this record is [10.5281/zenodo.22148374](https://doi.org/10.5281/zenodo.22148374), which always resolves to the most recent version; the first version, v1.0.0, is [10.5281/zenodo.22148375](https://doi.org/10.5281/zenodo.22148375). Cite the concept DOI unless a specific version is meant.
 
 ### *What is published and what is withheld.*
 

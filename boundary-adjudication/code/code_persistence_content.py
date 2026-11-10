@@ -43,7 +43,7 @@ what this script would report for a vertically integrated proprietary vendor. Th
 measurement can fail, and the pre-registered failure condition is INSIDE > .500.
 
 Run:
-    uv run python [internal path removed]
+    uv run python code/code_persistence_content.py
 
 Deterministic; no network, no randomness. Reads only the two files in ../data/.
 """

@@ -13,7 +13,7 @@ meta:
     orcid: 0009-0000-6893-9231
     affiliation: Independent Researcher
   doi: 10.5281/zenodo.22148374
-  date: '2026-08-01'
+  date: '2026-11-10'
   venue: Preprint
   license: CC-BY-4.0
   keywords:
@@ -141,11 +141,12 @@ acceptance:
     relative to which the investigator is the perimeter-setter.'
   falsification: A demonstration that the usual cases satisfy C1-C3 after all.
 - claim_id: P4a
-  criterion: Holds if the exclusion is hypothesis-relative and divides into two classes.
+  criterion: Holds if the exclusion is hypothesis-relative and divides into two classes. Partitions that
+    exist only as modelling choices fail C1 outright.
   falsification: A physical interface whose status as the system boundary is fixed by the investigator
     under every hypothesis, or a purely model-relative partition that some party fixes independently.
 - claim_id: P5
-  criterion: Holds if a firm is an existence proof that the three conditions are jointly satisfiable;
+  criterion: Holds if A firm is an existence proof that the three conditions are jointly satisfiable;
     it is an instrument for the boundary question and not a subject of it.
   falsification: Any showing that firms fail one of C1-C3, or that the paper's inferences require attributing
     cognition to firms.
